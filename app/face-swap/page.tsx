@@ -396,47 +396,49 @@ export default function FaceSwapPage() {
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col gap-4 p-4 overflow-hidden">
-        {/* Top: Templates section with fixed height */}
-        <Card className="p-3 sm:p-4 bg-zinc-950 border-zinc-800 flex flex-col">
-          <div className="flex-shrink-0 mb-3">
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-sm sm:text-base font-semibold text-white flex items-center gap-2">
-                <HugeiconsIcon icon={Image01Icon} className="h-4 w-4 text-purple-500" />
-                Select Template
-              </h2>
-              <Button size="sm" variant="outline" className="gap-2" onClick={() => setTemplateBrowserOpen(true)}>
-                Browse
-              </Button>
-            </div>
-          </div>
-          <div className="h-[96px] overflow-hidden">
-            <TemplateGallery
-              templates={templates}
-              selectedTemplate={selectedTemplate}
-              onTemplateSelect={handleTemplateSelect}
-            />
-          </div>
-        </Card>
 
-        {/* Bottom: Two columns on desktop - Upload (left) and Inpaint (right) */}
+        {/* Two columns: left (template + upload), right (paint) */}
         <div className="grid grid-cols-1 lg:grid-cols-[420px_minmax(0,1fr)] gap-4 min-h-0" style={{height: "calc(100% - 0px)"}}>
-          {/* Upload image */}
-          <Card className="p-3 sm:p-4 bg-zinc-950 border-zinc-800 flex flex-col min-h-0">
-            <h2 className="text-sm sm:text-base font-semibold text-white mb-3 flex items-center gap-2">
-              <HugeiconsIcon icon={User02Icon} className="h-4 w-4 text-blue-500" />
-              Upload Image
-            </h2>
-            <div className="flex-1 min-h-0">
-              <ImageUpload
-                onImageUpload={handleCharacterUpload}
-                currentImage={characterReference}
-                label="Upload your photo"
-                disabled={isProcessing}
-              />
-            </div>
-          </Card>
+          {/* Left: Template selector stacked above Upload */}
+          <div className="flex flex-col gap-4 min-h-0">
+            <Card className="p-3 sm:p-4 bg-zinc-950 border-zinc-800 flex flex-col">
+              <div className="flex-shrink-0 mb-3">
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="text-sm sm:text-base font-semibold text-white flex items-center gap-2">
+                    <HugeiconsIcon icon={Image01Icon} className="h-4 w-4 text-purple-500" />
+                    Select Template
+                  </h2>
+                  <Button size="sm" variant="outline" className="gap-2" onClick={() => setTemplateBrowserOpen(true)}>
+                    Browse
+                  </Button>
+                </div>
+              </div>
+              <div className="h-[96px] overflow-hidden">
+                <TemplateGallery
+                  templates={templates}
+                  selectedTemplate={selectedTemplate}
+                  onTemplateSelect={handleTemplateSelect}
+                />
+              </div>
+            </Card>
 
-          {/* Inpaint area */}
+            <Card className="p-3 sm:p-4 bg-zinc-950 border-zinc-800 flex flex-col min-h-0">
+              <h2 className="text-sm sm:text-base font-semibold text-white mb-3 flex items-center gap-2">
+                <HugeiconsIcon icon={User02Icon} className="h-4 w-4 text-blue-500" />
+                Upload Image
+              </h2>
+              <div className="flex-1 min-h-0">
+                <ImageUpload
+                  onImageUpload={handleCharacterUpload}
+                  currentImage={characterReference}
+                  label="Upload your photo"
+                  disabled={isProcessing}
+                />
+              </div>
+            </Card>
+          </div>
+
+          {/* Right: Inpaint area full height */}
           <Card className="p-3 sm:p-4 bg-zinc-950 border-zinc-800 flex flex-col min-h-0">
             {selectedTemplate ? (
               <>

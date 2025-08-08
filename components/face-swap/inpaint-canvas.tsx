@@ -90,7 +90,7 @@ export default function InpaintCanvas({
     img.src = imageUrl
   }, [imageUrl])
 
-  const getCanvasCoordinates = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const getCanvasCoordinates = (pt: { clientX: number; clientY: number }) => {
     const maskCanvas = maskCanvasRef.current
     if (!maskCanvas) return null
     
@@ -99,12 +99,12 @@ export default function InpaintCanvas({
     const scaleY = maskCanvas.height / rect.height
     
     return {
-      x: (e.clientX - rect.left) * scaleX,
-      y: (e.clientY - rect.top) * scaleY
+      x: (pt.clientX - rect.left) * scaleX,
+      y: (pt.clientY - rect.top) * scaleY
     }
   }
 
-  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.PointerEvent<HTMLCanvasElement>) => {
     if (isProcessing) return
     const coords = getCanvasCoordinates(e)
     if (!coords) return
@@ -132,7 +132,7 @@ export default function InpaintCanvas({
     draw(e)
   }
 
-  const draw = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.PointerEvent<HTMLCanvasElement>) => {
     if (!isDrawing) return
     
     const maskCanvas = maskCanvasRef.current
@@ -196,7 +196,7 @@ export default function InpaintCanvas({
     handleInpaint()
   }
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement> | React.PointerEvent<HTMLCanvasElement>) => {
     if (isProcessing) return
     const coords = getCanvasCoordinates(e)
     if (!coords) return
@@ -221,6 +221,30 @@ export default function InpaintCanvas({
       stopDrawing()
     }
     // Do not stop the FX overlay here; keep the outline animation running even outside the canvas
+  }
+
+  // Pointer event wrappers for mobile/touch/pen
+  const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (isProcessing) return
+    e.preventDefault()
+    try { (e.currentTarget as any).setPointerCapture?.(e.pointerId) } catch {}
+    startDrawing(e)
+  }
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (isProcessing) return
+    e.preventDefault()
+    handleMouseMove(e)
+  }
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    e.preventDefault()
+    try { (e.currentTarget as any).releasePointerCapture?.(e.pointerId) } catch {}
+    stopDrawing()
+  }
+
+  const handlePointerLeave = () => {
+    handleMouseLeave()
   }
 
   const undo = () => {
@@ -609,7 +633,7 @@ export default function InpaintCanvas({
                 style={{ width: Math.min(14, brushSize / 5) + 'px', height: Math.min(14, brushSize / 5) + 'px', backgroundColor: tool === 'brush' ? 'rgb(147, 51, 234)' : 'rgb(239, 68, 68)' }}
               />
               <div className="w-20">
-                <Slider value={[brushSize]} onValueChange={(v) => setBrushSize(v[0])} min={10} max={100} step={5} className="w-full" disabled={isProcessing} />
+                <Slider value={[brushSize]} onValueChange={(v) => setBrushSize(v[0])} min={10} max={200} step={5} className="w-full" disabled={isProcessing} />
               </div>
               <span className="text-[11px] text-white w-6 text-center">{brushSize}</span>
             </div>
@@ -645,11 +669,11 @@ export default function InpaintCanvas({
           <canvas
             ref={maskCanvasRef}
             className="absolute inset-0 cursor-none"
-            style={{ cursor: 'none', opacity: 0.5 }}
-            onMouseDown={startDrawing}
-            onMouseMove={handleMouseMove}
-            onMouseUp={stopDrawing}
-            onMouseLeave={handleMouseLeave}
+            style={{ cursor: 'none', opacity: 0.5, touchAction: 'none' }}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerLeave={handlePointerLeave}
           />
           {/* FX overlay for dashed glow edges (visual only) */}
           <canvas
