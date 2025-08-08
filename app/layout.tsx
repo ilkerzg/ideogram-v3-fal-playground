@@ -12,9 +12,8 @@ export const metadata: Metadata = {
   title: 'Ideogram V3 Character Edit — Powered by FAL',
   description: 'Face swap and character edit with Ideogram V3.',
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+    shortcut: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
   },
   openGraph: {
     type: 'website',

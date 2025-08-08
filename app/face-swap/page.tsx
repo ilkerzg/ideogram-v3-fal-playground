@@ -329,7 +329,7 @@ export default function FaceSwapPage() {
               <h1 className="text-lg sm:text-xl mb-0 lg:text-2xl font-bold text-white">
                Ideogram V3 Character Edit
               </h1>
-              <div className="absolute top-4 right-4 z-20">
+              <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
                 <a target="_blank" rel="noopener noreferrer" className="group relative border bg-card p-2 flex items-center rounded-xl gap-2" href="https://fal.ai">
                   <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ fill: 'currentColor' }} className="w-8 h-8 md:w-10 md:h-10">
                     <path fillRule="evenodd" clipRule="evenodd" d="M 36.773 6.617 C 37.583 6.617 38.232 7.276 38.31 8.082 C 39.001 15.275 44.726 21 51.919 21.691 C 52.726 21.768 53.385 22.417 53.385 23.228 L 53.385 36.772 C 53.385 37.583 52.726 38.232 51.919 38.309 C 44.726 39 39.001 44.725 38.31 51.918 C 38.232 52.724 37.583 53.383 36.773 53.383 L 23.227 53.383 C 22.417 53.383 21.768 52.724 21.69 51.918 C 20.999 44.725 15.274 39 8.081 38.309 C 7.274 38.232 6.615 37.583 6.615 36.772 L 6.615 23.228 C 6.615 22.417 7.274 21.768 8.081 21.691 C 15.274 21 20.999 15.275 21.69 8.082 C 21.768 7.276 22.417 6.617 23.227 6.617 L 36.773 6.617 Z M 16.006 29.96 C 16.006 37.741 22.307 44.049 30.08 44.049 C 37.853 44.049 44.154 37.741 44.154 29.96 C 44.154 22.179 37.853 15.871 30.08 15.871 C 22.307 15.871 16.006 22.179 16.006 29.96 Z"></path>
@@ -338,6 +338,11 @@ export default function FaceSwapPage() {
                   <div className="absolute top-full right-0 mt-1 px-2 py-1 rounded bg-card border shadow text-xs whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 md:hidden">
                     Powered by <span className="font-bold">Fal</span>
                   </div>
+                </a>
+                <a href="https://github.com/ilkerzg/ideogram-v3-fal-playground" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository" className="group border bg-card p-2 rounded-xl flex items-center justify-center">
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="w-8 h-8 md:w-10 md:h-10">
+                    <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.094 3.292 9.41 7.868 10.94.575.106.786-.25.786-.556 0-.274-.01-1.18-.016-2.142-3.2.696-3.877-1.382-3.877-1.382-.523-1.33-1.278-1.684-1.278-1.684-1.044-.713.08-.698.08-.698 1.154.081 1.762 1.186 1.762 1.186 1.027 1.76 2.693 1.252 3.348.957.104-.744.402-1.252.732-1.54-2.553-.291-5.236-1.278-5.236-5.686 0-1.256.45-2.283 1.186-3.087-.119-.29-.514-1.463.112-3.05 0 0 .967-.31 3.17 1.18.918-.255 1.903-.383 2.882-.388.979.005 1.964.133 2.882.388 2.203-1.49 3.169-1.18 3.169-1.18.627 1.587.232 2.76.114 3.05.738.804 1.185 1.83 1.185 3.087 0 4.418-2.688 5.392-5.253 5.678.414.357.78 1.06.78 2.137 0 1.543-.014 2.787-.014 3.166 0 .309.208.669.793.555C20.21 21.405 23.5 17.09 23.5 12c0-6.352-5.148-11.5-11.5-11.5Z"/>
+                  </svg>
                 </a>
               </div>
                {/* Status Badges - Inline */}
