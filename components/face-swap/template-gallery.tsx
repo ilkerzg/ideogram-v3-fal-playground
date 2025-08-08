@@ -8,7 +8,6 @@ import { Tick01Icon, Upload01Icon, Cancel01Icon } from "@hugeicons/core-free-ico
 import { cn } from "@/lib/utils"
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
-import Image from "next/image"
 
 interface Template {
   id: string
@@ -135,33 +134,20 @@ export default function TemplateGallery({
           )}
         >
           <div className="h-full w-full relative overflow-hidden rounded">
-            {template.url.startsWith('/') ? (
-              <Image
-                src={template.url}
-                alt={template.name}
-                fill
-                className="object-cover object-center rounded"
-                sizes="(max-width: 120px) 90px, 90px"
-                priority
-              />
-            ) : (
-              <img
-                src={template.url}
-                alt={template.name}
-                className="w-full h-full object-cover object-center rounded"
-                draggable={false}
-              />
-            )}
+            <img
+              src={template.url}
+              alt={template.name}
+              className="w-full h-full object-cover object-center rounded"
+              draggable={false}
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </Card>
       </HoverCardTrigger>
       <HoverCardContent side="bottom" align="start" className="w-80 p-2">
         <div className="flex gap-2">
-          {template.url.startsWith('/') ? (
-            <Image src={template.url} alt={template.name} width={112} height={112} className="object-cover rounded" />
-          ) : (
-            <img src={template.url} alt={template.name} className="w-28 h-28 object-cover rounded" />
-          )}
+          <img src={template.url} alt={template.name} className="w-28 h-28 object-cover rounded" />
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-white truncate">{template.name}</p>
             <Badge className="mt-1 text-xs py-0.5 px-2" variant="secondary">{template.category}</Badge>
@@ -174,11 +160,11 @@ export default function TemplateGallery({
   return (
     <Carousel opts={{ align: "start", dragFree: true, containScroll: "trimSnaps" }} className="w-full overflow-hidden max-h-[120px] h-[120px]">
       <CarouselContent className="h-full items-stretch [&>*]:px-1">
-        <CarouselItem className="!h-[90px] ml-4 !w-[90px] basis-[90px] sm:basis-[90px] md:basis-[90px] lg:basis-[90px] xl:basis-[90px] 2xl:basis-[90px] h-full max-w-[90px] flex">
+        <CarouselItem className="!h-[90px] ml-4 !w-[90px] basis-[90px] sm:basis-[90px] md:basis-[90px] lg:basis-[90px] xl:basis-[90px] 2xl:basis-[90px] max-w-[90px] flex">
           {CustomUploadCard}
         </CarouselItem>
         {templates.map((t) => (
-          <CarouselItem key={t.id} className="!h-[90px]  basis-[90px] sm:basis-[90px] md:basis-[90px] lg:basis-[90px] xl:basis-[90px] 2xl:basis-[90px] h-full max-w-[90px] flex">
+          <CarouselItem key={t.id} className="!h-[90px] basis-[90px] sm:basis-[90px] md:basis-[90px] lg:basis-[90px] xl:basis-[90px] 2xl:basis-[90px] max-w-[90px] flex">
             {TemplateCard(t)}
           </CarouselItem>
         ))}

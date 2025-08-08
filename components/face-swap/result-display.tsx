@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -80,14 +79,13 @@ export default function ResultDisplay({
         <TabsContent value="result" className="mt-0">
           <Card className="p-4 bg-zinc-900 border-zinc-800">
             <div className="relative rounded-lg overflow-hidden w-full aspect-[3/4] md:aspect-[16/9] min-h-[240px]">
-              <Image
+              <img
                 src={resultImage}
                 alt="Face swap result"
-                fill
-                unoptimized
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 800px"
                 crossOrigin="anonymous"
+                className="w-full h-full object-contain"
+                loading="lazy"
+                decoding="async"
               />
               <Badge className="absolute top-4 right-4 bg-green-500/90 text-white">
                 <HugeiconsIcon icon={SparklesIcon} className="h-3 w-3 mr-1" />
@@ -106,14 +104,13 @@ export default function ResultDisplay({
                   <Badge variant="secondary">Before</Badge>
                 </div>
                 <div className="relative rounded-lg overflow-hidden w-full aspect-[3/4] md:aspect-[16/9] min-h-[200px]">
-                  <Image
+                  <img
                     src={originalImage}
                     alt="Original template"
-                    fill
-                    unoptimized
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw, 50vw"
                     crossOrigin="anonymous"
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -128,14 +125,13 @@ export default function ResultDisplay({
                   </Badge>
                 </div>
                 <div className="relative rounded-lg overflow-hidden w-full aspect-[3/4] md:aspect-[16/9] min-h-[200px]">
-                  <Image
+                  <img
                     src={resultImage}
                     alt="Face swap result"
-                    fill
-                    unoptimized
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw, 50vw"
                     crossOrigin="anonymous"
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -167,14 +163,13 @@ export default function ResultDisplay({
                   </Badge>
                 </div>
                 <div className="relative rounded-lg overflow-hidden aspect-square">
-                  <Image
+                  <img
                     src={characterReference}
                     alt="Character reference"
-                    fill
-                    unoptimized
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 50vw, 33vw"
                     crossOrigin="anonymous"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -191,14 +186,13 @@ export default function ResultDisplay({
                   </Badge>
                 </div>
                 <div className="relative rounded-lg overflow-hidden aspect-square">
-                  <Image
+                  <img
                     src={originalImage}
                     alt="Original template"
-                    fill
-                    unoptimized
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 50vw, 33vw"
                     crossOrigin="anonymous"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -215,14 +209,13 @@ export default function ResultDisplay({
                   </Badge>
                 </div>
                 <div className="relative rounded-lg overflow-hidden aspect-square">
-                  <Image
+                  <img
                     src={resultImage}
                     alt="Face swap result"
-                    fill
-                    unoptimized
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 50vw, 33vw"
                     crossOrigin="anonymous"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
