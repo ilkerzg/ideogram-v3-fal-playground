@@ -529,7 +529,7 @@ export default function FaceSwapPage() {
                 onClick={() => { handleTemplateSelect(t.url); setTemplateBrowserOpen(false) }}
                 className={"text-left group"}
               >
-                <div className={"relative rounded-lg overflow-hidden border " + (selectedTemplate === t.url ? "border-violet-500" : "border-zinc-800") }>
+                <div className={"relative rounded-lg overflow-hidden  h-[400px] border " + (selectedTemplate === t.url ? "border-violet-500" : "border-zinc-800") }>
                   <img src={t.url} alt={t.name} className="w-full h-48 object-cover" />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/70 to-transparent p-2">
                     <p className="text-xs text-white font-semibold truncate">{t.name}</p>
