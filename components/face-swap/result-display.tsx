@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -15,6 +16,7 @@ import {
   GitCompareIcon
 } from "@hugeicons/core-free-icons"
 import { toast } from "sonner"
+ 
 
 interface ResultDisplayProps {
   originalImage: string
@@ -47,6 +49,8 @@ export default function ResultDisplay({
     }
   }
 
+  
+
   return (
     <div className="space-y-6">
       {/* View Mode Tabs */}
@@ -67,10 +71,7 @@ export default function ResultDisplay({
             </TabsTrigger>
           </TabsList>
 
-          <Button
-            onClick={handleDownload}
-            className="gap-2 "
-          >
+          <Button onClick={handleDownload} className="gap-2 ">
             <HugeiconsIcon icon={Download01Icon} className="h-4 w-4" />
             Download Result
           </Button>
@@ -79,10 +80,14 @@ export default function ResultDisplay({
         <TabsContent value="result" className="mt-0">
           <Card className="p-4 bg-zinc-900 border-zinc-800">
             <div className="relative rounded-lg overflow-hidden">
-              <img
+              <Image
                 src={resultImage}
                 alt="Face swap result"
-                className="w-full h-auto"
+                fill
+                unoptimized
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 800px"
+                crossOrigin="anonymous"
               />
               <Badge className="absolute top-4 right-4 bg-green-500/90 text-white">
                 <HugeiconsIcon icon={SparklesIcon} className="h-3 w-3 mr-1" />
@@ -101,10 +106,14 @@ export default function ResultDisplay({
                   <Badge variant="secondary">Before</Badge>
                 </div>
                 <div className="relative rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src={originalImage}
                     alt="Original template"
-                    className="w-full h-auto"
+                    fill
+                    unoptimized
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    crossOrigin="anonymous"
                   />
                 </div>
               </div>
@@ -119,10 +128,14 @@ export default function ResultDisplay({
                   </Badge>
                 </div>
                 <div className="relative rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src={resultImage}
                     alt="Face swap result"
-                    className="w-full h-auto"
+                    fill
+                    unoptimized
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    crossOrigin="anonymous"
                   />
                 </div>
               </div>
@@ -142,7 +155,7 @@ export default function ResultDisplay({
         </TabsContent>
 
         <TabsContent value="all" className="mt-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 bg-zinc-950 p-2 rounded-lg">
             {/* Character Reference */}
             <Card className="p-4 bg-zinc-900 border-zinc-800">
               <div className="space-y-3">
@@ -154,10 +167,14 @@ export default function ResultDisplay({
                   </Badge>
                 </div>
                 <div className="relative rounded-lg overflow-hidden aspect-square">
-                  <img
+                  <Image
                     src={characterReference}
                     alt="Character reference"
-                    className="w-full h-full object-cover"
+                    fill
+                    unoptimized
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 50vw, 33vw"
+                    crossOrigin="anonymous"
                   />
                 </div>
               </div>
@@ -174,10 +191,14 @@ export default function ResultDisplay({
                   </Badge>
                 </div>
                 <div className="relative rounded-lg overflow-hidden aspect-square">
-                  <img
+                  <Image
                     src={originalImage}
                     alt="Original template"
-                    className="w-full h-full object-cover"
+                    fill
+                    unoptimized
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 50vw, 33vw"
+                    crossOrigin="anonymous"
                   />
                 </div>
               </div>
@@ -194,10 +215,14 @@ export default function ResultDisplay({
                   </Badge>
                 </div>
                 <div className="relative rounded-lg overflow-hidden aspect-square">
-                  <img
+                  <Image
                     src={resultImage}
                     alt="Face swap result"
-                    className="w-full h-full object-cover"
+                    fill
+                    unoptimized
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 50vw, 33vw"
+                    crossOrigin="anonymous"
                   />
                 </div>
               </div>

@@ -172,8 +172,8 @@ const TEMPLATE_CONFIG: Omit<Template, 'url'>[] = [
   },
 ];
 
-// Auto-generated templates (gen-001..gen-060) so they appear in carousel and browser
-const GENERATED_CONFIG: Omit<Template, 'url'>[] = Array.from({ length: 60 }, (_, index) => {
+// Auto-generated templates (gen-001..gen-040) so they appear in carousel and browser
+const GENERATED_CONFIG: Omit<Template, 'url'>[] = Array.from({ length: 40 }, (_, index) => {
   const number = String(index + 1).padStart(3, "0")
   return {
     id: `gen-${number}`,

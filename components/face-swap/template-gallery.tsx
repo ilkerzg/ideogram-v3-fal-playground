@@ -8,6 +8,7 @@ import { Tick01Icon, Upload01Icon, Cancel01Icon } from "@hugeicons/core-free-ico
 import { cn } from "@/lib/utils"
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
+import Image from "next/image"
 
 interface Template {
   id: string
@@ -134,18 +135,33 @@ export default function TemplateGallery({
           )}
         >
           <div className="h-full w-full relative overflow-hidden rounded">
-            <img
-              src={template.url}
-              alt={template.name}
-              className="w-full h-full object-cover object-center rounded"
-              draggable={false}
-            />
+            {template.url.startsWith('/') ? (
+              <Image
+                src={template.url}
+                alt={template.name}
+                fill
+                className="object-cover object-center rounded"
+                sizes="(max-width: 120px) 90px, 90px"
+                priority
+              />
+            ) : (
+              <img
+                src={template.url}
+                alt={template.name}
+                className="w-full h-full object-cover object-center rounded"
+                draggable={false}
+              />
+            )}
           </div>
         </Card>
       </HoverCardTrigger>
       <HoverCardContent side="bottom" align="start" className="w-80 p-2">
         <div className="flex gap-2">
-          <img src={template.url} alt={template.name} className="w-28 h-28 object-cover rounded" />
+          {template.url.startsWith('/') ? (
+            <Image src={template.url} alt={template.name} width={112} height={112} className="object-cover rounded" />
+          ) : (
+            <img src={template.url} alt={template.name} className="w-28 h-28 object-cover rounded" />
+          )}
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-white truncate">{template.name}</p>
             <Badge className="mt-1 text-xs py-0.5 px-2" variant="secondary">{template.category}</Badge>

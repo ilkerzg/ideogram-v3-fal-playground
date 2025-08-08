@@ -327,7 +327,7 @@ export default function FaceSwapPage() {
           <div className="flex mb-4 items-center justify-between">
             <div className="flex items-center gap-4">
               <h1 className="text-lg sm:text-xl mb-0 lg:text-2xl font-bold text-white">
-               Ideogram V3 Character Edit
+               FaceSwapp Ideogram V3
               </h1>
               <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
                 <a target="_blank" rel="noopener noreferrer" className="group relative border bg-card p-2 flex items-center rounded-xl gap-2" href="https://fal.ai">
@@ -476,17 +476,15 @@ export default function FaceSwapPage() {
       {inpaintResult && (
         <Dialog open={!!inpaintResult} onOpenChange={(open) => { if (!open) setInpaintResult(null) }}>
           <DialogContent
-            className="bg-zinc-950 border-zinc-800 w-full max-w-6xl max-h-[85vh] sm:rounded-lg overflow-y-auto p-4 sm:p-6"
-            onEscapeKeyDown={(e) => e.preventDefault()}
-            onPointerDownOutside={(e) => e.preventDefault()}
+            className="bg-zinc-950 border-zinc-800 w-full max-w-6xl max-h-[85vh] sm:rounded-lg p-0 overflow-hidden flex flex-col"
           >
-            <DialogHeader>
+            <DialogHeader className="sticky top-0 z-20 bg-zinc-950 border-b border-zinc-800 px-4 py-3 sm:px-6 sm:py-4">
               <DialogTitle className="text-white flex items-center gap-2">
                 <HugeiconsIcon icon={SparklesIcon} className="h-5 w-5" />
                 Generated Result
               </DialogTitle>
             </DialogHeader>
-            <div className="mt-2">
+            <div className="flex-1 overflow-y-auto px-4 py-3 sm:px-6 sm:py-4">
               <ResultDisplay
                 originalImage={selectedTemplate!}
                 resultImage={inpaintResult}

@@ -9,24 +9,85 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'Ideogram V3 Character Edit — Powered by FAL',
-  description: 'Face swap and character edit with Ideogram V3.',
+  title: {
+    default: 'Face Swapper - Ideogram V3 — Powered by FAL',
+    template: '%s | Face Swapper',
+  },
+  description:
+    "Swap faces into stunning templates in seconds. Upload a face and apply it to curated portraits with precise inpainting and masking. Fast, privacy-friendly, and powered by FAL.",
+  keywords: [
+    'AI face swap',
+    'face swap',
+    'image editing',
+    'inpainting',
+    'portrait templates',
+    'character edit',
+    'FAL AI',
+    'Ideogram',
+    'computer vision',
+    'image generation',
+  ],
+  authors: [{ name: 'FAL AI' }],
+  creator: 'FAL AI',
+  publisher: 'FAL AI',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    viewportFit: 'cover',
+  },
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
+  alternates: {
+    canonical: '/',
+  },
   icons: {
-    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
-    shortcut: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+    icon: [
+      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: [
+      { url: '/favicon.ico', type: 'image/x-icon' },
+    ],
   },
   openGraph: {
     type: 'website',
-    title: 'Ideogram V3 Character Edit — Powered by FAL',
-    description: 'Face swap and character edit with Ideogram V3.',
-    siteName: 'Ideogram V3 Character Edit',
-    images: ['/og2.png'],
+    locale: 'en_US',
+    url: '/',
+    title: 'Face Swapper — Ideogram V3 — Powered by FAL',
+    description:
+      'Swap faces into stunning templates in seconds. Upload a face and apply it to curated portraits with precise inpainting and masking.',
+    siteName: 'Face Swapper',
+    images: [
+      {
+        url: '/og2.png',
+        width: 1200,
+        height: 630,
+        alt: 'Face Swapper — AI Face Swap Demo',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ideogram V3 Character Edit — Powered by FAL',
-    description: 'Face swap and character edit with Ideogram V3.',
-    images: ['/og2.png'],
+    title: 'Face Swapper — Ideogram V3 — Powered by FAL',
+    description:
+      'Swap faces into stunning templates in seconds. Upload a face and apply it to curated portraits with precise inpainting and masking.',
+    creator: '@fal_ai',
+    site: '@fal_ai',
+    images: [
+      {
+        url: '/og2.png',
+        width: 1200,
+        height: 630,
+        alt: 'Face Swapper — AI Face Swap Demo',
+        type: 'image/png',
+      },
+    ],
   },
   robots: {
     index: true,
@@ -39,7 +100,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  generator: 'v0.dev'
+  generator: 'v0.dev',
 }
 
 export default function RootLayout({
@@ -49,6 +110,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <meta name="apple-mobile-web-app-title" content="FAL" />
+      </head>
       <body className={cn(
         spaceGrotesk.variable,
         'min-h-screen bg-background font-sans antialiased',
