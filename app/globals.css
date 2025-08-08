@@ -1,0 +1,492 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --radius-lg: 0px;
+  --radius-md: 0px;
+  --radius-sm: 0px;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility text-blue {
+  /* Text colors */
+  color: hsl(var(--color-blue));
+}
+@utility text-purple {
+  color: hsl(var(--color-purple));
+}
+@utility text-pink {
+  color: hsl(var(--color-pink));
+}
+@utility text-red {
+  color: hsl(var(--color-red));
+}
+@utility text-orange {
+  color: hsl(var(--color-orange));
+}
+@utility text-yellow {
+  color: hsl(var(--color-yellow));
+}
+@utility text-green {
+  color: hsl(var(--color-green));
+}
+@utility text-teal {
+  color: hsl(var(--color-teal));
+}
+@utility text-cyan {
+  color: hsl(var(--color-cyan));
+}
+@utility text-indigo {
+  color: hsl(var(--color-indigo));
+}
+@utility bg-blue {
+  /* Background colors */
+  background-color: hsl(var(--color-blue));
+}
+@utility bg-purple {
+  background-color: hsl(var(--color-purple));
+}
+@utility bg-pink {
+  background-color: hsl(var(--color-pink));
+}
+@utility bg-red {
+  background-color: hsl(var(--color-red));
+}
+@utility bg-orange {
+  background-color: hsl(var(--color-orange));
+}
+@utility bg-yellow {
+  background-color: hsl(var(--color-yellow));
+}
+@utility bg-green {
+  background-color: hsl(var(--color-green));
+}
+@utility bg-teal {
+  background-color: hsl(var(--color-teal));
+}
+@utility bg-cyan {
+  background-color: hsl(var(--color-cyan));
+}
+@utility bg-indigo {
+  background-color: hsl(var(--color-indigo));
+}
+@utility bg-blue-subtle {
+  /* Subtle backgrounds */
+  background-color: hsl(var(--color-blue-subtle));
+}
+@utility bg-purple-subtle {
+  background-color: hsl(var(--color-purple-subtle));
+}
+@utility bg-pink-subtle {
+  background-color: hsl(var(--color-pink-subtle));
+}
+@utility bg-red-subtle {
+  background-color: hsl(var(--color-red-subtle));
+}
+@utility bg-orange-subtle {
+  background-color: hsl(var(--color-orange-subtle));
+}
+@utility bg-yellow-subtle {
+  background-color: hsl(var(--color-yellow-subtle));
+}
+@utility bg-green-subtle {
+  background-color: hsl(var(--color-green-subtle));
+}
+@utility bg-teal-subtle {
+  background-color: hsl(var(--color-teal-subtle));
+}
+@utility bg-cyan-subtle {
+  background-color: hsl(var(--color-cyan-subtle));
+}
+@utility bg-indigo-subtle {
+  background-color: hsl(var(--color-indigo-subtle));
+}
+@utility border-blue {
+  /* Border colors */
+  border-color: hsl(var(--color-blue));
+}
+@utility border-purple {
+  border-color: hsl(var(--color-purple));
+}
+@utility border-pink {
+  border-color: hsl(var(--color-pink));
+}
+@utility border-red {
+  border-color: hsl(var(--color-red));
+}
+@utility border-orange {
+  border-color: hsl(var(--color-orange));
+}
+@utility border-yellow {
+  border-color: hsl(var(--color-yellow));
+}
+@utility border-green {
+  border-color: hsl(var(--color-green));
+}
+@utility border-teal {
+  border-color: hsl(var(--color-teal));
+}
+@utility border-cyan {
+  border-color: hsl(var(--color-cyan));
+}
+@utility border-indigo {
+  border-color: hsl(var(--color-indigo));
+}
+@utility icon-box {
+  /* Icon box styles */
+  @apply inline-flex items-center justify-center p-2 transition-colors;
+}
+@utility icon-box-sm {
+  @apply p-1.5 text-sm;
+}
+@utility icon-box-md {
+  @apply p-2 text-base;
+}
+@utility icon-box-lg {
+  @apply p-3 text-lg;
+}
+@utility icon-box-xl {
+  @apply p-4 text-xl;
+}
+@utility glow-blue {
+  /* Glow effects */
+  box-shadow: 0 0 20px hsl(var(--color-blue) / 0.3);
+}
+@utility glow-purple {
+  box-shadow: 0 0 20px hsl(var(--color-purple) / 0.3);
+}
+@utility glow-pink {
+  box-shadow: 0 0 20px hsl(var(--color-pink) / 0.3);
+}
+@utility glow-green {
+  box-shadow: 0 0 20px hsl(var(--color-green) / 0.3);
+}
+@utility glow-orange {
+  box-shadow: 0 0 20px hsl(var(--color-orange) / 0.3);
+}
+@utility hover-glow {
+  /* Hover glow effects */
+  &:hover {
+    box-shadow: 0 0 30px currentColor;
+    transform: translateY(-2px);
+  }
+}
+
+@layer base {
+  :root {
+    /* Core dark theme colors */
+    --background: 0 0% 0%; /* Pure black */
+    --foreground: 0 0% 100%; /* Pure white */
+    --card: 0 0% 4%; /* Near black */
+    --card-foreground: 0 0% 100%; /* White */
+    --popover: 0 0% 4%; /* Near black */
+    --popover-foreground: 0 0% 100%; /* White */
+    --primary: 0 0% 100%; /* White */
+    --primary-foreground: 0 0% 0%; /* Black */
+    --secondary: 0 0% 8%; /* Dark gray */
+    --secondary-foreground: 0 0% 100%; /* White */
+    --muted: 0 0% 12%; /* Muted dark */
+    --muted-foreground: 0 0% 60%; /* Muted text */
+    --accent: 0 0% 16%; /* Accent dark */
+    --accent-foreground: 0 0% 100%; /* White */
+    --destructive: 0 84% 60%; /* Red */
+    --destructive-foreground: 0 0% 100%; /* White */
+    --border: 0 0% 16%; /* Border color */
+    --input: 0 0% 12%; /* Input background */
+    --ring: 0 0% 40%; /* Focus ring */
+    
+    /* Vibrant color palette for badges, icons, and accents */
+    --color-blue: 217 91% 60%; /* Bright blue */
+    --color-purple: 270 91% 65%; /* Vibrant purple */
+    --color-pink: 330 81% 60%; /* Hot pink */
+    --color-red: 0 84% 60%; /* Bright red */
+    --color-orange: 25 95% 53%; /* Vibrant orange */
+    --color-yellow: 45 93% 58%; /* Golden yellow */
+    --color-green: 142 71% 45%; /* Emerald green */
+    --color-teal: 174 77% 41%; /* Teal */
+    --color-cyan: 188 85% 53%; /* Cyan */
+    --color-indigo: 231 83% 60%; /* Indigo */
+    
+    /* Subtle versions for backgrounds */
+    --color-blue-subtle: 217 91% 60% / 0.1;
+    --color-purple-subtle: 270 91% 65% / 0.1;
+    --color-pink-subtle: 330 81% 60% / 0.1;
+    --color-red-subtle: 0 84% 60% / 0.1;
+    --color-orange-subtle: 25 95% 53% / 0.1;
+    --color-yellow-subtle: 45 93% 58% / 0.1;
+    --color-green-subtle: 142 71% 45% / 0.1;
+    --color-teal-subtle: 174 77% 41% / 0.1;
+    --color-cyan-subtle: 188 85% 53% / 0.1;
+    --color-indigo-subtle: 231 83% 60% / 0.1;
+    
+    /* Chart colors */
+    --chart-1: 217 91% 60%; /* Blue */
+    --chart-2: 270 91% 65%; /* Purple */
+    --chart-3: 142 71% 45%; /* Green */
+    --chart-4: 25 95% 53%; /* Orange */
+    --chart-5: 0 84% 60%; /* Red */
+    
+    --radius: 0px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Remove all border radius */
+  * {
+    border-radius: 0 !important;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 1px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+
+  /* Enhanced focus states for accessibility */
+  .focus-ring:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Command palette styles */
+  .command-palette {
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  /* Badge Utilities */
+  .badge-dot {
+    @apply w-1.5 h-1.5 rounded-full bg-current;
+  }
+
+  .badge-group {
+    @apply inline-flex items-center gap-1.5;
+  }
+
+  /* Responsive badge container */
+  .badge-container {
+    @apply flex flex-wrap gap-1.5 sm:gap-2;
+  }
+
+  /* Badge animations (subtle) */
+  @keyframes badge-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  .badge-pulse {
+    animation: badge-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .badge-container {
+      @apply gap-1;
+    }
+
+    .badge-responsive {
+      @apply text-[10px] px-1.5 py-0.5;
+    }
+  }
+
+  /* Responsive typography */
+  @media (max-width: 640px) {
+    .text-responsive-xl {
+      font-size: 2.5rem;
+      line-height: 1.1;
+    }
+  }
+
+  @media (min-width: 641px) {
+    .text-responsive-xl {
+      font-size: 4rem;
+      line-height: 1;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .text-responsive-xl {
+      font-size: 5rem;
+      line-height: 1;
+    }
+  }
+
+  /* Color utilities */
+  
+  /* Weather animations */
+  @keyframes rain {
+    from {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.5;
+    }
+    to {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+  
+  .animate-rain {
+    animation: rain linear infinite;
+  }
+  
+  /* Custom range slider styles */
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  /* Slider track */
+  input[type="range"]::-webkit-slider-track {
+    background: transparent;
+    height: 48px;
+  }
+  
+  input[type="range"]::-moz-range-track {
+    background: transparent;
+    height: 48px;
+  }
+  
+  /* Slider thumb (hidden as we use custom indicator) */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    height: 48px;
+    width: 20px;
+    cursor: pointer;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    appearance: none;
+    background: transparent;
+    border: none;
+    height: 48px;
+    width: 20px;
+    cursor: pointer;
+  }
+  
+  /* Focus styles */
+  input[type="range"]:focus {
+    outline: none;
+  }
+  
+  input[type="range"]:focus::-webkit-slider-thumb {
+    outline: none;
+  }
+}
