@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { cn } from '@/lib/utils'
 
@@ -119,6 +120,7 @@ export default function RootLayout({
         'lg:h-screen lg:overflow-hidden'
       )}>
         {children}
+        <Analytics />
       </body>
     </html>
   )
