@@ -79,7 +79,7 @@ export default function ResultDisplay({
 
         <TabsContent value="result" className="mt-0">
           <Card className="p-4 bg-zinc-900 border-zinc-800">
-            <div className="relative rounded-lg overflow-hidden">
+            <div className="relative rounded-lg overflow-hidden w-full aspect-[3/4] md:aspect-[16/9] min-h-[240px]">
               <Image
                 src={resultImage}
                 alt="Face swap result"
@@ -105,7 +105,7 @@ export default function ResultDisplay({
                   <h3 className="text-sm font-medium text-gray-400">Original Template</h3>
                   <Badge variant="secondary">Before</Badge>
                 </div>
-                <div className="relative rounded-lg overflow-hidden">
+                <div className="relative rounded-lg overflow-hidden w-full aspect-[3/4] md:aspect-[16/9] min-h-[200px]">
                   <Image
                     src={originalImage}
                     alt="Original template"
@@ -127,7 +127,7 @@ export default function ResultDisplay({
                     After
                   </Badge>
                 </div>
-                <div className="relative rounded-lg overflow-hidden">
+                <div className="relative rounded-lg overflow-hidden w-full aspect-[3/4] md:aspect-[16/9] min-h-[200px]">
                   <Image
                     src={resultImage}
                     alt="Face swap result"
